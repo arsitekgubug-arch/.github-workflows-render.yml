@@ -1,9 +1,7 @@
 name: Render Remotion Shorts Video
 
 on:
-  # Bisa dijalankan manual lewat tombol di tab Actions GitHub
   workflow_dispatch:
-  # Atau otomatis jalan setiap kali ada update kode di branch main
   push:
     branches:
       - main
@@ -20,12 +18,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: "npm"
+          cache: ''
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
-      - name: Render Remotion Video (with Three.js WebGL Support)
+      - name: Render Remotion Video
         run: |
           mkdir -p out
           npx remotion render src/index.ts BuildingCollapseShorts out/video-shorts.mp4 --gl=angle
